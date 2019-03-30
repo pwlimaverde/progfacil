@@ -1,0 +1,13 @@
+<h2>Lista de Mensalista</h2>
+    <ul>
+    {% for valor in mensalista %}
+        <li>{{ valor.veiculo}} - {{ valor.veiculo.proprietario}}</li>
+    {% endfor %}
+    </ul>
+
+<form action="{% url 'mensalista_novo' %}" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit">Cadastrar</button>
+</form>

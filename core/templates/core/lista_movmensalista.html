@@ -1,0 +1,13 @@
+<h2>Lista de Movimento Mensalista</h2>
+    <ul>
+    {% for valor in movmensalista %}
+        <li>{{ valor}}</li>
+    {% endfor %}
+    </ul>
+
+<form action="{% url 'movmensalista_novo' %}" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit">Cadastrar</button>
+</form>
