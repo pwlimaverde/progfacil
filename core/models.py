@@ -47,18 +47,27 @@ class MovRotativo(models.Model):
 
 
     def horas_total(self):
-
+        now = datetime.today()
+        now = ((now.day*24*60)+(now.hour*60) + now.minute)
+        chi = ((self.checkin.day*24*60)+((self.checkin.hour-3)*60) + self.checkin.minute)
+        inh = ((now-chi)*60)//3600
+        inm = int(((((now-chi)*60)/3600)-inh)*60)
+        if inm <= 9:
+            inm = str('0' + str(inm))
         if self.checkout:
             return math.ceil((self.checkout - self.checkin).total_seconds() / 3600)
         else:
-            return 'em aberto'
+            return str(inh) + ':' + str(inm) + ' Em aberto'
 
     def total(self):
-
+        now = datetime.today()
+        now = ((now.day * 24 * 60) + (now.hour * 60) + now.minute)
+        chi = ((self.checkin.day * 24 * 60) + ((self.checkin.hour - 3) * 60) + self.checkin.minute)
+        inh = ((now - chi) * 60) // 3600
         if self.checkout:
             return self.valor_hora * self.horas_total()
         else:
-            return 'Em aberto'
+            return self.valor_hora * inh
 
     def __str__(self):
         return self.veiculo.placa
