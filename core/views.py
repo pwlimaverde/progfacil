@@ -20,7 +20,7 @@ def home(request):
     return render(request, 'core/index.html')
 
 
-def lista_pessoas(request):
+def lista_pessoa(request):
     data = {}
     form = PessoaForm()
     data['pessoa'] = Pessoa.objects.all()
@@ -48,6 +48,18 @@ def update_pessoa(request, pk):
             return redirect('lista_pessoa')
     else:
         return render(request, 'core/update_pessoa.html', data)
+
+
+def del_pessoa(request, pk):
+    data = {}
+    obj = Pessoa.objects.get(pk=pk)
+    data['obj'] = obj
+
+    if request.method == 'POST':
+        obj.delete()
+        return redirect('lista_pessoa')
+    else:
+        return render(request, 'core/del_confirmacao.html', data)
 
 
 def lista_marca(request):
@@ -80,6 +92,18 @@ def update_marca(request, pk):
         return render(request, 'core/update_marca.html', data)
 
 
+def del_marca(request, pk):
+    data = {}
+    obj = Marca.objects.get(pk=pk)
+    data['obj'] = obj
+
+    if request.method == 'POST':
+        obj.delete()
+        return redirect('lista_marca')
+    else:
+        return render(request, 'core/del_confirmacao.html', data)
+
+
 def lista_veiculo(request):
     data = {}
     form = VeiculoForm()
@@ -108,6 +132,18 @@ def update_veiculo(request, pk):
             return redirect('lista_veiculo')
     else:
         return render(request, 'core/update_veiculo.html', data)
+
+
+def del_veiculo(request, pk):
+    data = {}
+    obj = Veiculo.objects.get(pk=pk)
+    data['obj'] = obj
+
+    if request.method == 'POST':
+        obj.delete()
+        return redirect('lista_veiculo')
+    else:
+        return render(request, 'core/del_confirmacao.html', data)
 
 
 def lista_movrotativo(request):
@@ -140,6 +176,18 @@ def update_movrotativo(request, pk):
         return render(request, 'core/update_movrotativo.html', data)
 
 
+def del_movrotativo(request, pk):
+    data = {}
+    obj = MovRotativo.objects.get(pk=pk)
+    data['obj'] = obj
+
+    if request.method == 'POST':
+        obj.delete()
+        return redirect('lista_movrotativo')
+    else:
+        return render(request, 'core/del_confirmacao.html', data)
+
+
 def lista_mensalista(request):
     data = {}
     form = MensalistaForm()
@@ -170,6 +218,18 @@ def update_mensalista(request, pk):
         return render(request, 'core/update_mensalista.html', data)
 
 
+def del_mensalista(request, pk):
+    data = {}
+    obj = Mensalista.objects.get(pk=pk)
+    data['obj'] = obj
+
+    if request.method == 'POST':
+        obj.delete()
+        return redirect('lista_mensalista')
+    else:
+        return render(request, 'core/del_confirmacao.html', data)
+
+
 def lista_movmensalista(request):
     data = {}
     form = MovMensalistaForm()
@@ -198,3 +258,15 @@ def update_movmensalista(request, pk):
             return redirect('lista_movmensalista')
     else:
         return render(request, 'core/update_movmensalista.html', data)
+
+
+def del_movmensalista(request, pk):
+    data = {}
+    obj = MovMensalista.objects.get(pk=pk)
+    data['obj'] = obj
+
+    if request.method == 'POST':
+        obj.delete()
+        return redirect('lista_movmensalista')
+    else:
+        return render(request, 'core/del_confirmacao.html', data)
