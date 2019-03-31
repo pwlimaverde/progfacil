@@ -1,0 +1,8 @@
+<h2>Atualizando Movimento Rotativo: {{ movrotativo }}</h2>
+
+<form action="{% url 'update_movrotativo' movrotativo.id %}" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit">Salvar</button>
+</form>
