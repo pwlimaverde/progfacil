@@ -1,7 +1,8 @@
 <h2>Lista de Movimento Rotativo</h2>
     <ul>
     {% for valor in movrotativo %}
-        <li>{{ valor.veiculo }} - {{ valor.checkin }} - {{ valor.checkout }} - {{ valor.total }} - {{ valor.horas_total }}</li>
+        <li><a href="{% url 'update_movrotativo' valor.id %}">{{ valor.veiculo }} - {{ valor.checkin }} -
+            {{ valor.checkout }} - {{ valor.total }} - {{ valor.horas_total }}</a></li>
     {% endfor %}
     </ul>
 
