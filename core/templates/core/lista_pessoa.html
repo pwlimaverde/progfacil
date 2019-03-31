@@ -1,7 +1,7 @@
 <h2>Lista de Pessoas</h2>
     <ul>
     {% for valor in pessoa %}
-        <li><a href="{% url 'update_pessoa' valor.id %}">{{ valor.nome }}</a></li>
+        <li><a href="{% url 'update_pessoa' valor.id %}">{{ valor.id }} - {{ valor.nome }}</a></li>
     {% endfor %}
     </ul>
 

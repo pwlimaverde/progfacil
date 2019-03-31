@@ -1,4 +1,4 @@
-<h2>Atualizando Pessoa: {{ veiculo }}</h2>
+<h2>Atualizando Veiculo: {{ veiculo }}</h2>
 
 <form action="{% url 'update_veiculo' veiculo.id %}" method="POST">
     {% csrf_token %}
@@ -6,3 +6,4 @@
 
     <button type="submit">Salvar</button>
 </form>
+    <a href="{% url 'del_veiculo' veiculo.id %}">Deletar</a>

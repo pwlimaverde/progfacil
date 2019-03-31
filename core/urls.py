@@ -1,24 +1,30 @@
 from django.urls import path
 from .views import (
     home,
-    lista_pessoas,
+    lista_pessoa,
     pessoa_novo,
     update_pessoa,
+    del_pessoa,
     lista_marca,
     marca_novo,
     update_marca,
+    del_marca,
     lista_veiculo,
     veiculo_novo,
     update_veiculo,
+    del_veiculo,
     lista_movrotativo,
     movrotativo_novo,
     update_movrotativo,
+    del_movrotativo,
     lista_mensalista,
     mensalista_novo,
     update_mensalista,
+    del_mensalista,
     lista_movmensalista,
     movmensalista_novo,
     update_movmensalista,
+    del_movmensalista,
 )
 
 
@@ -26,12 +32,14 @@ urlpatterns = [
     path('', home,
          name='core_home'),
 
-    path('pessoa/', lista_pessoas,
+    path('pessoa/', lista_pessoa,
          name='lista_pessoa'),
     path('pessoa-novo/', pessoa_novo,
          name='pessoa_novo'),
     path('pessoa-update/<int:pk>', update_pessoa,
          name='update_pessoa'),
+    path('pessoa-del/<int:pk>', del_pessoa,
+         name='del_pessoa'),
 
     path('marca/', lista_marca,
          name='lista_marca'),
@@ -39,6 +47,8 @@ urlpatterns = [
          name='marca_novo'),
     path('marca-update/<int:pk>', update_marca,
          name='update_marca'),
+    path('marca-del/<int:pk>', del_marca,
+         name='del_marca'),
 
     path('veiculo/', lista_veiculo,
          name='lista_veiculo'),
@@ -46,6 +56,8 @@ urlpatterns = [
          name='veiculo_novo'),
     path('veiculo-update/<int:pk>', update_veiculo,
          name='update_veiculo'),
+    path('veiculo-del/<int:pk>', del_veiculo,
+         name='del_veiculo'),
 
     path('movrotativo/', lista_movrotativo,
          name='lista_movrotativo'),
@@ -53,6 +65,8 @@ urlpatterns = [
          name='movrotativo_novo'),
     path('movrotativo-update/<int:pk>', update_movrotativo,
          name='update_movrotativo'),
+    path('movrotativo-del/<int:pk>', del_movrotativo,
+         name='del_movrotativo'),
 
     path('mensalista/', lista_mensalista,
          name='lista_mensalista'),
@@ -60,6 +74,8 @@ urlpatterns = [
          name='mensalista_novo'),
     path('mensalista-update/<int:pk>', update_mensalista,
          name='update_mensalista'),
+    path('mensalista-del/<int:pk>', del_mensalista,
+         name='del_mensalista'),
 
     path('movmensalista/', lista_movmensalista,
          name='lista_movmensalista'),
@@ -67,4 +83,6 @@ urlpatterns = [
          name='movmensalista_novo'),
     path('movmensalista-update/<int:pk>', update_movmensalista,
          name='update_movmensalista'),
+    path('movmensalista-del/<int:pk>', del_movmensalista,
+         name='del_movmensalista'),
 ]
