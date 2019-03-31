@@ -125,6 +125,21 @@ def movrotativo_novo(request):
     return redirect('lista_movrotativo')
 
 
+def update_movrotativo(request, pk):
+    data = {}
+    movrotativo = MovRotativo.objects.get(pk=pk)
+    form = MovRotativoForm(request.POST or None, instance=movrotativo)
+    data['movrotativo'] = movrotativo
+    data['form'] = form
+
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('lista_movrotativo')
+    else:
+        return render(request, 'core/update_movrotativo.html', data)
+
+
 def lista_mensalista(request):
     data = {}
     form = MensalistaForm()
