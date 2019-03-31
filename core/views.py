@@ -155,6 +155,21 @@ def mensalista_novo(request):
     return redirect('lista_mensalista')
 
 
+def update_mensalista(request, pk):
+    data = {}
+    mensalista = Mensalista.objects.get(pk=pk)
+    form = MensalistaForm(request.POST or None, instance=mensalista)
+    data['mensalista'] = mensalista
+    data['form'] = form
+
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('lista_mensalista')
+    else:
+        return render(request, 'core/update_mensalista.html', data)
+
+
 def lista_movmensalista(request):
     data = {}
     form = MovMensalistaForm()
@@ -168,3 +183,18 @@ def movmensalista_novo(request):
     if form.is_valid():
         form.save()
     return redirect('lista_movmensalista')
+
+
+def update_movmensalista(request, pk):
+    data = {}
+    movmensalista = MovMensalista.objects.get(pk=pk)
+    form = MovMensalistaForm(request.POST or None, instance=movmensalista)
+    data['movmensalista'] = movmensalista
+    data['form'] = form
+
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('lista_movmensalista')
+    else:
+        return render(request, 'core/update_movmensalista.html', data)

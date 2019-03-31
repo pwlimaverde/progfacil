@@ -1,7 +1,7 @@
 <h2>Lista de Movimento Mensalista</h2>
     <ul>
     {% for valor in movmensalista %}
-        <li>{{ valor}}</li>
+        <li><a href="{% url 'update_movmensalista' valor.id %}">{{ valor}}</a></li>
     {% endfor %}
     </ul>
 
