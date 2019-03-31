@@ -1,7 +1,7 @@
 <h2>Lista de Veiculos</h2>
     <ul>
     {% for valor in veiculo %}
-        <li>{{ valor }}</li>
+        <li><a href="{% url 'update_veiculo' valor.id %}">{{ valor }}</a></li>
     {% endfor %}
     </ul>
 

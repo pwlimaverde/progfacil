@@ -95,6 +95,21 @@ def veiculo_novo(request):
     return redirect('lista_veiculo')
 
 
+def update_veiculo(request, pk):
+    data = {}
+    veiculo = Veiculo.objects.get(pk=pk)
+    form = VeiculoForm(request.POST or None, instance=veiculo)
+    data['veiculo'] = veiculo
+    data['form'] = form
+
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('lista_veiculo')
+    else:
+        return render(request, 'core/update_veiculo.html', data)
+
+
 def lista_movrotativo(request):
     data = {}
     form = MovRotativoForm()
