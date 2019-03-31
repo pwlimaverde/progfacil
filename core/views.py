@@ -23,16 +23,31 @@ def home(request):
 def lista_pessoas(request):
     data = {}
     form = PessoaForm()
-    data['pessoas'] = Pessoa.objects.all()
+    data['pessoa'] = Pessoa.objects.all()
     data['form'] = form
-    return render(request, 'core/lista_pessoas.html', data)
+    return render(request, 'core/lista_pessoa.html', data)
 
 
 def pessoa_novo(request):
     form = PessoaForm(request.POST or None)
     if form.is_valid():
         form.save()
-    return redirect('lista_pessoas')
+    return redirect('lista_pessoa')
+
+
+def update_pessoa(request, pk):
+    data = {}
+    pessoa = Pessoa.objects.get(pk=pk)
+    form = PessoaForm(request.POST or None, instance=pessoa)
+    data['pessoa'] = pessoa
+    data['form'] = form
+
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('lista_pessoa')
+    else:
+        return render(request, 'core/update_pessoa.html', data)
 
 
 def lista_marca(request):
@@ -48,6 +63,21 @@ def marca_novo(request):
     if form.is_valid():
         form.save()
     return redirect('lista_marca')
+
+
+def update_marca(request, pk):
+    data = {}
+    marca = Marca.objects.get(pk=pk)
+    form = MarcaForm(request.POST or None, instance=marca)
+    data['marca'] = marca
+    data['form'] = form
+
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('lista_marca')
+    else:
+        return render(request, 'core/update_marca.html', data)
 
 
 def lista_veiculo(request):
