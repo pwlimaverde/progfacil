@@ -1,4 +1,3 @@
-from tkinter import CASCADE
 import math
 from datetime import datetime
 from django.db import models
@@ -21,9 +20,9 @@ class Marca(models.Model):
 
 
 class Veiculo(models.Model):
-    marca = models.ForeignKey(Marca, on_delete=CASCADE)
+    marca = models.ForeignKey(Marca, on_delete=models.CASCADE)
     placa = models.CharField(max_length=7)
-    proprietario = models.ForeignKey(Pessoa, on_delete=CASCADE)
+    proprietario = models.ForeignKey(Pessoa, on_delete=models.CASCADE)
     cor = models.CharField(max_length=15)
     observacoes = models.TextField(blank=True, null=True)
 
@@ -44,7 +43,7 @@ class MovRotativo(models.Model):
     checkin = models.DateTimeField(auto_now_add=False)
     checkout = models.DateTimeField(auto_now_add=False, null=True, blank=True)
     valor_hora = models.DecimalField(max_digits=6, decimal_places=2)
-    veiculo = models.ForeignKey(Veiculo, on_delete=CASCADE)
+    veiculo = models.ForeignKey(Veiculo, on_delete=models.CASCADE)
     pago = models.BooleanField(default=False)
 
 
@@ -76,7 +75,7 @@ class MovRotativo(models.Model):
 
 
 class Mensalista(models.Model):
-    veiculo = models.ForeignKey(Veiculo, on_delete=CASCADE)
+    veiculo = models.ForeignKey(Veiculo, on_delete=models.CASCADE)
     inicio = models.DateField(auto_now_add=False, null=False, blank=False)
     valor_mes = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False)
 
@@ -85,7 +84,7 @@ class Mensalista(models.Model):
 
 
 class MovMensalista(models.Model):
-    mensalista = models.ForeignKey(Mensalista, on_delete=CASCADE)
+    mensalista = models.ForeignKey(Mensalista, on_delete=models.CASCADE)
     dt_pgto = models.DateField()
     total = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False)
 
